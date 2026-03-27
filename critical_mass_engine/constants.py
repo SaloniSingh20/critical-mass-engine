@@ -1,0 +1,14 @@
+"""Shared constants for the Critical Mass bot."""
+
+ROWS = 12
+COLS = 8
+TIME_LIMIT = 0.95
+
+DIRS = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
+MAX_ORDERED_MOVES = 6
+TOP_CANDIDATES = 3
+ROLLOUT_DEPTH = 12
+ROLLOUTS_PER_MOVE = 4
+SEARCH_DEPTH = 3
+RANDOM_MOVE_PROBABILITY = 0.08
