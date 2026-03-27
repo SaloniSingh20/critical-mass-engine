@@ -1,126 +1,227 @@
-# Critical Mass Engine
+# 🧠 Critical Mass AI Engine
 
-An AI bot for Chain Reaction style Critical Mass gameplay, built as a clean Python project and ready for competition integration.
+**Hybrid Game AI for Chain Reaction / Critical Mass**
 
-The bot uses a hybrid strategy:
-- Minimax with alpha-beta pruning for tactical calculation
-- Monte Carlo rollouts for uncertainty handling
-- Heuristic evaluation for board control and survival
+An advanced AI agent designed for competitive gameplay in **Chain Reaction–style Critical Mass environments**, combining deterministic search, probabilistic simulation, and domain-specific heuristics.
 
-## Why This Project
+---
 
-This repository is structured to be easy to:
-- Plug into a game runner quickly
-- Tune and experiment with strategy constants
-- Test core board mechanics reliably
-- Extend with stronger search and benchmarking
+# 🚀 Overview
 
-## Project Structure
+This project implements a **high-performance decision-making engine** capable of:
 
-```text
-critical-mass engine/
-|-- teamname_bot.py
-|-- strategy.md
-|-- README.md
-|-- requirements.txt
-|-- test_cases/
-|   `-- sample_board.txt
-|-- tests/
-|   |-- test_board.py
-|   `-- test_bot.py
-`-- critical_mass_engine/
-    |-- __init__.py
-    |-- constants.py
-    |-- board.py
-    |-- heuristics.py
-    |-- search.py
-    |-- simulation.py
-    |-- io_utils.py
-    `-- bot.py
+* Strategic planning via **Minimax with Alpha-Beta pruning**
+* Handling uncertainty using **Monte Carlo rollouts**
+* Maintaining board dominance with **heuristic evaluation**
+* Operating under **strict time constraints (competition-ready)**
+
+> Designed for **AI competitions, game simulators, and research experimentation**
+
+---
+
+# 🧠 Core AI Architecture
+
+The bot uses a **hybrid intelligence pipeline**:
+
+### 🔍 1. Deterministic Search
+
+* Minimax with Alpha-Beta pruning
+* Depth-limited for performance
+* Prioritized move ordering
+
+### 🎲 2. Probabilistic Simulation
+
+* Monte Carlo rollouts for stochastic evaluation
+* Captures long-term chain reaction potential
+
+### ⚖️ 3. Heuristic Evaluation
+
+Custom scoring based on:
+
+* Cell stability (critical mass proximity)
+* Chain reaction potential
+* Board control and dominance
+* Risk minimization (explosion vulnerability)
+
+---
+
+# ⚡ Why This Project Stands Out
+
+✔ Hybrid AI (Search + Simulation)
+✔ Competition-ready architecture
+✔ Modular & extensible design
+✔ Zero external dependencies
+✔ Fully testable game engine
+
+---
+
+# 📁 Project Structure
+
+```bash
+critical-mass-engine/
+│
+├── teamname_bot.py          # Competition entry point
+├── strategy.md              # Strategy explanation
+├── README.md
+├── requirements.txt
+│
+├── test_cases/
+│   └── sample_board.txt
+│
+├── tests/
+│   ├── test_board.py
+│   └── test_bot.py
+│
+└── critical_mass_engine/
+    ├── __init__.py
+    ├── constants.py         # Tunable AI parameters
+    ├── board.py             # Game state + rules
+    ├── heuristics.py        # Evaluation logic
+    ├── search.py            # Minimax + Alpha-Beta
+    ├── simulation.py        # Monte Carlo rollouts
+    ├── io_utils.py
+    └── bot.py               # Core decision engine
 ```
 
-## Quick Start
+---
 
-### 1) Clone repository
+# ⚙️ Quick Start
+
+### 1️⃣ Clone Repository
 
 ```bash
 git clone https://github.com/SaloniSingh20/critical-mass-engine.git
 cd critical-mass-engine
 ```
 
-### 2) Run the bot on sample board
+---
+
+### 2️⃣ Run the Bot
 
 ```bash
 python teamname_bot.py
 ```
 
-Expected output is a suggested move for player 1 as a coordinate tuple.
+➡ Output: Best move for Player 1 as `(row, col)`
 
-### 3) Run tests
+---
+
+### 3️⃣ Run Tests
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-## Integration API
+---
 
-Competition-facing entry point:
-- Function: choose_move(board, player)
-- File: teamname_bot.py
+# 🧩 Integration API
 
-Internal implementation lives in critical_mass_engine/bot.py.
+### Entry Function:
 
-## Board Specification
+```python
+choose_move(board, player)
+```
 
-- Board size: 12 rows x 8 columns
-- Cell format: [count, owner]
-- owner values:
-  - 0 = empty
-  - 1 = player 1
-  - 2 = player 2
+* 📍 Located in: `teamname_bot.py`
+* 🧠 Internally uses: `critical_mass_engine/bot.py`
 
-Example row:
+---
 
-```text
+# 🧱 Board Specification
+
+* Grid Size: **12 x 8**
+* Cell Format: `[orb_count, owner]`
+
+| Owner | Meaning  |
+| ----- | -------- |
+| 0     | Empty    |
+| 1     | Player 1 |
+| 2     | Player 2 |
+
+### Example:
+
+```python
 [[0,0],[1,1],[0,0],[2,2],[0,0],[0,0],[0,0],[0,0]]
 ```
 
-## Strategy Pipeline
+---
 
-1. Generate valid moves for current player.
-2. Rank moves with positional and critical-mass heuristics.
-3. Evaluate top candidates via Monte Carlo rollouts.
-4. Search shortlisted moves with minimax + alpha-beta.
-5. Return highest scoring move (with small exploration probability).
+# 🔄 Decision Pipeline
 
-## Tunable Parameters
+1. Generate all valid moves
+2. Rank using heuristic scoring
+3. Select top candidates
+4. Run Monte Carlo simulations
+5. Apply Minimax + Alpha-Beta
+6. Return highest scoring move
 
-All major behavior knobs are centralized in critical_mass_engine/constants.py:
-- TIME_LIMIT
-- MAX_ORDERED_MOVES
-- TOP_CANDIDATES
-- ROLLOUT_DEPTH
-- ROLLOUTS_PER_MOVE
-- SEARCH_DEPTH
-- RANDOM_MOVE_PROBABILITY
+> Includes controlled randomness for exploration
 
-## Test Coverage
+---
 
-Current tests validate:
-- Move legality filtering
-- Input board immutability on move application
-- Corner explosion correctness
-- Chain reaction propagation and capture behavior
-- Bot interface returns valid coordinates
+# 🎛️ Tunable Parameters
 
-## Dependencies
+All AI knobs are centralized in:
 
-Runtime uses Python standard library only.
+```bash
+critical_mass_engine/constants.py
+```
 
-requirements.txt is included for compatibility with tooling pipelines.
+Key parameters:
 
-## Roadmap
+* `TIME_LIMIT`
+* `SEARCH_DEPTH`
+* `ROLLOUTS_PER_MOVE`
+* `ROLLOUT_DEPTH`
+* `TOP_CANDIDATES`
+* `MAX_ORDERED_MOVES`
+* `RANDOM_MOVE_PROBABILITY`
 
-- Add benchmark harness for move-time and win-rate tracking
-- Add opening-book style priors for early-game stability
-- Add optional iterative deepening with dynamic time allocation
+---
+
+# 🧪 Test Coverage
+
+✔ Move legality
+✔ Board immutability
+✔ Chain reaction propagation
+✔ Explosion correctness
+✔ Capture mechanics
+✔ Bot output validity
+
+---
+
+# ⚡ Performance Characteristics
+
+* Optimized for **low-latency decisions**
+* Efficient pruning reduces search complexity
+* Scales well under **tight competition constraints**
+
+---
+
+# 🧠 Advanced Features (Competition Edge)
+
+* Heuristic-guided move ordering
+* Hybrid evaluation (search + simulation)
+* Controlled stochastic exploration
+* Modular AI pipeline for rapid experimentation
+
+---
+
+# 🛣️ Roadmap (Next-Level Enhancements)
+
+* 🔥 Iterative deepening with time allocation
+* 📊 Benchmarking (win-rate + move latency)
+* 📚 Opening-book strategies
+* 🧠 Reinforcement learning integration
+* ⚡ Parallel Monte Carlo rollouts
+
+---
+
+# 🏆 Use Cases
+
+* AI competitions (game agents)
+* Algorithm benchmarking
+* Game theory experimentation
+* Educational AI projects
+
+---
